@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reģionu Punkti</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #121212;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .left {
+      flex: 2;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .region {
+      font-size: 2.5vw;
+      margin: 0.5em 0;
+    }
+    .right {
+      flex: 1;
+      background-color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .kopatitle {
+      font-size: 3vw;
+      margin-bottom: 0.5em;
+    }
+    .kopa {
+      font-size: 8vw;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="left" id="regions"></div>
+  <div class="right">
+    <div class="kopatitle">KOPĀ</div>
+    <div class="kopa" id="total"></div>
+  </div>
+
+  <script>
+    const sheetId = '13LXXyZIDzuJy1wFyJRG8hpV8bsqchjEpxR_rKsundZ4';
+    const sheetName = 'Sheet1';
+
+    async function fetchData() {
+      const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+      const response = await fetch(url);
+      const text = await response.text();
+      const json = JSON.parse(text.substr(47).slice(0, -2));
+      const rows = json.table.rows;
+
+      const container = document.getElementById('regions');
+      container.innerHTML = '';
+      let total = 0;
+
+      for (let i = 0; i < 15 && i < rows.length; i++) {
+        const score = parseFloat(rows[i].c[1]?.v || 0);
+        total += score;
+        const div = document.createElement('div');
+        div.className = 'region';
+        div.textContent = `${i + 1}. Reģions: ${score}`;
+        container.appendChild(div);
+      }
+
+      document.getElementById('total').textContent = total;
+    }
+
+    fetchData();
+    setInterval(fetchData, 10000); // update every 10s
+  </script>
+</body>
+</html>
