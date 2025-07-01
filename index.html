@@ -7,39 +7,70 @@
   <style>
     body {
       margin: 0;
-      background-color: #121212;
+      background-color: #002c5f;
       color: white;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
+      flex-direction: row;
       height: 100vh;
       overflow: hidden;
     }
+
     .left {
-      flex: 2;
+      flex: 3;
       padding: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-content: center;
+      justify-items: start;
     }
+
     .region {
-      font-size: 2.5vw;
-      margin: 0.5em 0;
+      font-size: 2vw;
+      padding: 15px 25px;
+      background-color: white;
+      color: #002c5f;
+      border-radius: 10px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      width: 100%;
+      box-sizing: border-box;
     }
+
     .right {
       flex: 1;
-      background-color: #222;
+      background-color: #004080;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      color: white;
     }
+
     .kopatitle {
       font-size: 3vw;
       margin-bottom: 0.5em;
     }
+
     .kopa {
-      font-size: 8vw;
+      font-size: 6vw;
       font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .left {
+        grid-template-columns: 1fr;
+      }
+      .region {
+        font-size: 4vw;
+      }
+      .kopatitle {
+        font-size: 6vw;
+      }
+      .kopa {
+        font-size: 10vw;
+      }
     }
   </style>
 </head>
@@ -47,7 +78,7 @@
   <div class="left" id="regions"></div>
   <div class="right">
     <div class="kopatitle">KOPĀ</div>
-    <div class="kopa" id="total"></div>
+    <div class="kopa" id="total">0</div>
   </div>
 
   <script>
@@ -78,7 +109,7 @@
     }
 
     fetchData();
-    setInterval(fetchData, 10000); // update every 10s
+    setInterval(fetchData, 10000);
   </script>
 </body>
 </html>
