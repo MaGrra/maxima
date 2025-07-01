@@ -23,12 +23,12 @@
 
     header {
       width: 100%;
-      padding: 10px;
+      padding: 5px;
       text-align: center;
     }
 
     header img {
-      max-height: 240px;
+      max-height: 120px;
     }
 
     main {
@@ -39,17 +39,17 @@
 
     .left {
       flex: 3;
-      padding: 20px;
+      padding: 10px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 10px;
       align-content: center;
       justify-items: start;
     }
 
     .region {
-      font-size: 1.8vw;
-      padding: 10px 18px;
+      font-size: 1.6vw;
+      padding: 8px 14px;
       background-color: white;
       color: rgb(0, 73, 144);
       border: 12px solid white;
@@ -66,7 +66,6 @@
       align-items: center;
       justify-content: center;
       color: white;
-      border-left: none;
     }
 
     .kopatitle {
@@ -75,7 +74,7 @@
     }
 
     .kopa {
-      font-size: 5vw;
+      font-size: 6.5vw;
       font-weight: bold;
     }
 
@@ -96,7 +95,7 @@
     <div class="divider"></div>
     <div class="right">
       <div class="kopatitle">KOPĀ</div>
-      <div class="kopa" id="total">0g</div>
+      <div class="kopa" id="total">0</div>
     </div>
   </main>
 
@@ -104,7 +103,6 @@
     const sheetId = '13LXXyZIDzuJy1wFyJRG8hpV8bsqchjEpxR_rKsundZ4';
     const sheetName = 'Sheet1';
 
-    // Example team border colors
     const borderColors = [
       'red', 'green', 'blue', 'orange', 'purple', 'teal', 'darkblue',
       'pink', 'lime', 'black', 'cyan', 'indigo', 'gray', 'yellow', 'brown'
@@ -131,7 +129,7 @@
         container.appendChild(div);
       }
 
-      document.getElementById('total').textContent = total + 'g';
+      document.getElementById('total').textContent = total;
     }
 
     fetchData();
